@@ -12,13 +12,13 @@ on Windows 7, MacOS Sierra and Red Hat Linux 7 (dhclient).
 ## Why?
 (Momchil) Cause I need it for bHype
  
-For more details and to see the code in action, check out our blog post: [mysteriouscode.io/blog/dhcp-implementation-in-php/](https://mysteriouscode.io/blog/dhcp-implementation-in-php/)
+For more details and to see the code in action, check original blog post: [mysteriouscode.io/blog/dhcp-implementation-in-php/](https://mysteriouscode.io/blog/dhcp-implementation-in-php/)
 
 ## Running DHCPServer
 
-To start the server, run `php src/DHCPServer/server.php serve x.x.x.x/y`
-Replace `x.x.x.x/y` with an IP and mask for the server (for example, 10.0.0.0/25)
+To start the server, run `php src/DHCPServer/server.php ID`
 
 ## TODO
-Remove dependencies on PSR and Symphony
-Use MariaDb for a backend
+- Remove dependencies on PSR and Symphony
+- Use MariaDb for a backend
+- Use config from MariaDb (cmd param ID)
