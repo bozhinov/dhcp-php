@@ -1,9 +1,5 @@
 <?php
-require __DIR__.'/../../vendor/autoload.php';
 
-use Symfony\Component\Console\Application;
+require __DIR__.'/autoload.php';
 
-$console = new Application();
-
-$console->add(new \DHCPServer\DHCPServer());
-$console->run();
+$void = new \DHCPServer\DHCPServer();
