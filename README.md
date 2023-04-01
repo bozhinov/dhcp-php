@@ -1,69 +1,24 @@
 # dhcp
 DHCP implementation in PHP
 
-[![Build Status](https://travis-ci.org/pbudzon/dhcp-php.svg?branch=master)](https://travis-ci.org/pbudzon/dhcp-php)
-
 `src/DHCP/` contains an implementation of DHCP protocol in PHP. It can be used to translate any DHCP packet from the 
 network into PHP objects and vice versa.
 
-`src/DHCPServer/` is a simple DHCP Server using the DHCP implementation, using PostgreSQL as a backend for storing
+`src/DHCPServer/` is a simple DHCP Server using the DHCP implementation, using MariaDb as a backend for storing
 lease information. It also supports assigning static ip addresses to clients and was tested with default DHCP Clients
 on Windows 7, MacOS Sierra and Red Hat Linux 7 (dhclient).
+(Momchil) Will be tested on FreeBSD 13+
 
 ## Why?
-
-Simply to show it can be done. This code is not intended for production use, but as a learning exercise. It may be
- an easy way for PHP developers to learn more about DHCP protocol.
+(Momchil) Cause I need it for bHype
  
 For more details and to see the code in action, check out our blog post: [mysteriouscode.io/blog/dhcp-implementation-in-php/](https://mysteriouscode.io/blog/dhcp-implementation-in-php/)
 
 ## Running DHCPServer
 
-To start the server, run `php src/DHCPServer/server.php serve x.x.x.x/y password_to_postgresql`
-Replace `x.x.x.x/y` with an IP and mask for the server (for example, 10.0.0.0/25) and `password_to_postgres` with
-a password to PostgreSQL. 
+To start the server, run `php src/DHCPServer/server.php serve x.x.x.x/y`
+Replace `x.x.x.x/y` with an IP and mask for the server (for example, 10.0.0.0/25)
 
-To change database IP address, database name and user, go to `src/DHCPServer/Postgresql.php` line 12.
-
-### PostgreSQL tables for DHCPServer
-
-Two PostreSQL tables are required and have to be created before the server can run:
-
-`dhcp_leases` holds information about leases given to clients and their expiry dates:
-
-```
-CREATE TABLE dhcp_leases
-(
-  id serial NOT NULL,
-  ip inet,
-  mac macaddr,
-  reason text,
-  assigned_on timestamp without time zone,
-  expires_on timestamp without time zone,
-  CONSTRAINT dhcp_leases_id_pk PRIMARY KEY (id)
-)
-WITH (
-  OIDS=FALSE
-);
-
-```
-
-`dhcp_static` holds a list of static IP addresses for each client based on its MAC address:
-
-```
-CREATE TABLE dhcp_static
-(
-  id serial NOT NULL,
-  ip inet,
-  dns inet[],
-  lease_time integer,
-  mac macaddr,
-  router inet,
-  CONSTRAINT dhcp_static_id_pk PRIMARY KEY (id),
-  CONSTRAINT dhcp_static_ip_pk UNIQUE (ip)
-)
-WITH (
-  OIDS=FALSE
-);
-
-```
+## TODO
+Remove dependencies on PSR and Symphony
+Use MariaDb for a backend
