@@ -12,7 +12,7 @@ on Windows 7, MacOS Sierra and Red Hat Linux 7 (dhclient).
 ## Why?
 (Momchil) Cause I need it for bHype
  
-For more details and to see the code in action, check original blog post: [mysteriouscode.io/blog/dhcp-implementation-in-php/](https://mysteriouscode.io/blog/dhcp-implementation-in-php/)
+For more details and to see the code in action, check out the original blog post: [mysteriouscode.io/blog/dhcp-implementation-in-php/](https://mysteriouscode.io/blog/dhcp-implementation-in-php/)
 
 ## Running DHCPServer
 
@@ -20,5 +20,7 @@ To start the server, run `php src/DHCPServer/server.php ID`
 
 ## TODO
 - Remove dependencies on PSR and Symphony
+- Remove socket binding to '0.0.0.0'
 - Use MariaDb for a backend
 - Use config from MariaDb (cmd param ID)
+- Log to MariaDb and/or to console
